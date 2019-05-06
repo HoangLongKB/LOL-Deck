@@ -13,6 +13,7 @@ export class ChampionDetailComponent implements OnInit {
   champion_splash_url = '';
   skin_number = 0;
   skins = 0;
+  skin_name = 'default';
   constructor(
     private activeRoute: ActivatedRoute,
     private championService: ChampionService
@@ -27,6 +28,7 @@ export class ChampionDetailComponent implements OnInit {
               this.champion = champion;
               this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${champion.skins[this.skin_number].num}.jpg`;
               this.skins = champion.skins.length;
+              this.skin_name = champion.skins[this.skin_number].name;
               console.log('lozthuan' + this.skins);
 
             }
@@ -44,6 +46,7 @@ export class ChampionDetailComponent implements OnInit {
         this.skin_number = this.skin_number - 1;
       }
       this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${this.champion.skins[this.skin_number].num}.jpg`;
+      this.skin_name = this.champion.skins[this.skin_number].name;
       console.log(this.skin_number);
 
     } else if (feature == 2){
@@ -53,6 +56,7 @@ export class ChampionDetailComponent implements OnInit {
         this.skin_number = this.skin_number + 1;
       }
       this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${this.champion.skins[this.skin_number].num}.jpg`;
+      this.skin_name = this.champion.skins[this.skin_number].name;
       console.log(this.skin_number);
     }
   }
