@@ -1,26 +1,35 @@
-<div class="row justify-content-around">
-  <div class="col-lg-7">
-    <div class="row justify-content-center">
-      <h5>{{skin_name}}</h5>
-    </div>
-    <img class="img-fluid" src="{{champion_splash_url}}" alt="Champion splash art">
-    <div class="row justify-content-center">
-      <button (click)="changeSkin(1)">Previous</button>
-      <h6>Change Skin</h6>
-      <button (click)="changeSkin(2)">Next</button>
-    </div>
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="col-lg-7">
+          <div class="row justify-content-center">
+            <h5>{{skin_name}}</h5>
+          </div>
+          <img class="img-fluid" src="{{champion_splash_url}}" alt="Champion splash art">
+          <div class="row justify-content-center">
+            <button (click)="changeSkin(1)">Previous</button>
+            <h6>Change Skin</h6>
+            <button (click)="changeSkin(2)">Next</button>
+          </div>
 
-  </div>
+        </div>
 
-  <div class="col-lg-4">
-    <div class="row justify-content-center">
-      <h4 class="text-center">{{champion.name}}</h4>
-    </div>
-    <div class="row justify-content-center">
-      <p><strong>{{champion.title}}</strong></p>
-    </div>
-    <div class="row justify-content-center">
-      <span *ngFor="let tag of champion.tags" class="tag">{{tag}}</span>
-    </div>
-  </div>
+        <div class="col-lg-4">
+          <div class="row justify-content-center">
+            <h4 class="text-center">{{champion.name}}</h4>
+          </div>
+          <div class="row justify-content-center">
+            <p><strong>{{champion.title}}</strong></p>
+          </div>
+          <div class="row justify-content-center">
+            <span *ngFor="let tag of champion.tags" class="tag">{{tag}}</span>
+          </div>
+          <div class="row justify-content-center mt-3">
+              <img (click)="changePassive()" class="mr-3" src="{{champion_passive_url}}{{champion.passive.image.full}}" alt="{{champion.passive.name}} skill icon">
+            <img (click)="changeSkillInfo(spell.id)" class="mr-3" *ngFor="let spell of champion.spells" src="{{champion_spell_url}}{{spell.image.full}}" alt="{{spell.id}} skill icon">
+          </div>
+          <div class="row justify-content-center skill-info">
+            <p>{{currentSkillInfo}}</p>
+          </div>
+        </div>
+      </div>
 </div>

@@ -2,18 +2,26 @@ import { Injectable } from '@angular/core';
 import { champions } from '../URLs/champions';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChampionService {
 
+  championsList: BehaviorSubject<any>;
+  championsList$: Observable<any>;
+
+
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {
+    this.championsList = new BehaviorSubject<any>({});
+    this.championsList$ = this.championsList.asObservable();
+  }
 
   getChampions() {
-    return this.httpClient.get<any>(champions.champions)
+    this.httpClient.get<any>(champions.champions)
       .pipe(
         map(data => {
           let arrChampionsList = [];
@@ -22,7 +30,10 @@ export class ChampionService {
             arrChampionsList.push(data.data[key]);
           });
           return arrChampionsList;
-        })
+        }),
+      ).subscribe(champList => {
+          this.championsList.next(champList);
+        }
       );
   }
   getChampionsObj(id) {

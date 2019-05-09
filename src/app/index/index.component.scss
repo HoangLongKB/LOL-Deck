@@ -1,5 +1,36 @@
 .card {
   background-color: #0D1B2A;
   color: #E0E1DD;
-
+}
+.champion-title {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  background-color: black;
+  opacity: 0;
+  p {
+    font-size: 2.5em;
+    margin: 2% 0;
+  }
+}
+.search-input {
+  z-index: 999;
+}
+.show-name-fixed {
+  animation: namefixed 1s alternate;
+}
+@keyframes namefixed {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 0;
+  }
 }

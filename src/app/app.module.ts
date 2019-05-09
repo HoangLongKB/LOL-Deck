@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MyNgbModule } from './shared/my-ngb/my-ngb.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MyNgbModule } from './shared/my-ngb/my-ngb.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MyNgbModule
+    MyNgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

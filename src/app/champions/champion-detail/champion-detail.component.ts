@@ -11,9 +11,14 @@ import { champions } from 'src/app/URLs/champions';
 export class ChampionDetailComponent implements OnInit {
   champion: any;
   champion_splash_url = '';
+  champion_spell_url = champions.champion_spell;
+  champion_passive_url = champions.champion_passive_url;
   skin_number = 0;
   skins = 0;
   skin_name = 'default';
+  currentSkill = 0;
+  currentSkillInfo = '';
+
   constructor(
     private activeRoute: ActivatedRoute,
     private championService: ChampionService
@@ -29,8 +34,7 @@ export class ChampionDetailComponent implements OnInit {
               this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${champion.skins[this.skin_number].num}.jpg`;
               this.skins = champion.skins.length;
               this.skin_name = champion.skins[this.skin_number].name;
-              console.log('lozthuan' + this.skins);
-
+              this.currentSkillInfo = champion.spells[this.currentSkill].description;
             }
           );
         }
@@ -47,7 +51,6 @@ export class ChampionDetailComponent implements OnInit {
       }
       this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${this.champion.skins[this.skin_number].num}.jpg`;
       this.skin_name = this.champion.skins[this.skin_number].name;
-      console.log(this.skin_number);
 
     } else if (feature == 2){
       if (this.skin_number >= (this.skins - 1)) {
@@ -57,8 +60,15 @@ export class ChampionDetailComponent implements OnInit {
       }
       this.champion_splash_url = `${champions.champion_splash}${this.champion.id}_${this.champion.skins[this.skin_number].num}.jpg`;
       this.skin_name = this.champion.skins[this.skin_number].name;
-      console.log(this.skin_number);
     }
+  }
+
+  changeSkillInfo(spellID) {
+    this.currentSkill = this.champion.spells.findIndex(x => x.id == spellID);
+    this.currentSkillInfo = this.champion.spells[this.currentSkill].description;
+  }
+  changePassive() {
+    this.currentSkillInfo = this.champion.passive.description;
   }
 
 }

@@ -1,9 +1,15 @@
 <div class="container-fluid mt-5">
+  <div class="champion-title justify-content-center" [ngClass]="{'show-name-fixed': isShowNameFixed, 'none': !isShowNameFixed}">
+    <p>{{nameFixed}}</p>
+  </div>
+  <div class="row justify-content-center my-3">
+      <input #searchInput class="form-control col-lg-5 search-input" type="search" placeholder="Search" (input)="searchChampions(searchInput.value)">
+  </div>
   <div class="row d-flex flex-row flex-wrap justify-content-start align-items-start">
     <div class="col-lg-2 col-xl-1 col-md-2 col-sm-4 col-6" *ngFor="let champion of championsList">
       <div class="card">
         <a routerLink="champion-detail/{{champion.id}}">
-            <img src="http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/{{champion.image.full}}" class="card-img-top" alt="champion image square">
+            <img (mouseenter)="showNameFixed(champion.name)" (mouseleave)="offNameFixed()" src="{{champion_square_url}}{{champion.image.full}}" class="card-img-top" alt="champion image square">
         </a>
       </div>
     </div>
